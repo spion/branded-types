@@ -1,6 +1,6 @@
 {
   "name": "branded-types",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "license": "MIT",
@@ -8,7 +8,9 @@
     "build": "tsc",
     "prepublish": "tsc"
   },
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "devDependencies": {
     "typescript": "^3.5.1"
   }

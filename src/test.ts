@@ -1,11 +1,9 @@
-import { Branded } from ".";
+import { Branded } from "."
 
-namespace my {
-  export class OrderId extends Branded<string, 'mypkgname.OrderId'>() {}
+const orderId = class OrderId extends Branded<string, "my-package.OrderId">() {}
+
+export type OrderId = typeof orderId.prototype
+
+export function safeCreateOrderId() {
+  return orderId.brand("x")
 }
-
-export function safeCreateId() {
-  return my.OrderId.brand('x')
-}
-
-export type OrderId = my.OrderId;

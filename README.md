@@ -60,26 +60,6 @@ m.set(safeCreateOrderId(), "1")
 m.set("someString", "2") // error
 ```
 
-## Even more advanced example
-
-If you'd like your package brands to become incompatible with major version bumps, you can use this technique:
-
-```typescript
-type PkgName = "my-package"
-type PkgVersion = "v1"
-export type PkgBrand<T extends string> = `${PkgName}.${PkgVersion}.${T}`
-```
-
-Then use it for all your branded types:
-
-```typescript
-import { PkgBrand } from "./brand-info"
-
-const orderId = class OrderId extends Branded<string, PkgBrand<"OrderId">>() {}
-```
-
-Changing `PkgVersion` will then result with new brands for all types using `PkgBrand`
-
 ## Features
 
 - Not nominal. The same package in different places in the filesystem will still be compatible with
@@ -99,3 +79,23 @@ Changing `PkgVersion` will then result with new brands for all types using `PkgB
 - No built in string / number operators allowed. If for example you try to concat two OrderIds
   with `+`, its not going to work. You have to use an explicit cast to the source type via e.g.
   `String(brandedVal)` or `Number(brandedVal)` etc, then perform the operation
+
+## Even more advanced example
+
+If you'd like your package brands to become incompatible with major version bumps, you can use this technique:
+
+```typescript
+type PkgName = "my-package"
+type PkgVersion = "v1"
+export type PkgBrand<T extends string> = `${PkgName}.${PkgVersion}.${T}`
+```
+
+Then use it for all your branded types:
+
+```typescript
+import { PkgBrand } from "./brand-info"
+
+const orderId = class OrderId extends Branded<string, PkgBrand<"OrderId">>() {}
+```
+
+Changing `PkgVersion` will then result with new brands for all types using `PkgBrand`

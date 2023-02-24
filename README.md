@@ -30,21 +30,21 @@ OrderId.brand("someUuid") === "someString" // error
 
 Want to hide the branding and un-branding functions? Here is an easy way to do it.
 
-- Put the class in a private `const`. Make sure you still name it with the desired name, as
-  it will be used for error messages.
-- Use the `brand` method within your module to safely create instances
-- Export only the type instead of the entire class
+- Put the class in a private `const`.
+- Export only the type instead of the entire class. Make sure you use the name you want here.
+- Use the `brand` static method within your module to safely create instances
+
+Example:
 
 ```typescript
 import { Branded } from "branded-types"
 
-const orderId = class OrderId extends Branded<string, "my-package.OrderId">() {}
+const orderId = class extends Branded<string, "my-package.OrderId">() {}
+export type OrderId = InstanceType<typeof orderId>
 
 export function safeCreateOrderId() {
   return orderId.brand("x")
 }
-
-export type OrderId = typeof orderId.prototype
 ```
 
 Other modules can only use the safe ID creation functions now, as `OrderId` is just a type:

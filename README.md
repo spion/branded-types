@@ -26,7 +26,7 @@ import { OrderId } from "./other-module"
 OrderId.brand("someUuid") === "someString" // error
 ```
 
-## Advanced example
+## Hiding the branding wrapper
 
 Want to hide the branding and un-branding functions? Here is an easy way to do it.
 
@@ -80,7 +80,7 @@ m.set("someString", "2") // error
   with `+`, its not going to work. You have to use an explicit cast to the source type via e.g.
   `String(brandedVal)` or `Number(brandedVal)` etc, then perform the operation
 
-## Even more advanced example
+## Package-level branding
 
 If you'd like your package brands to become incompatible with major version bumps, you can use this technique:
 
